@@ -131,7 +131,7 @@ prereqFor(cpsc331, [M, C]) :-
   
 prereqFor(cpsc313, [M, C, P]) :- 
   member(M, [math271, math273]), 
-  member(C, [cpsc219, cpsc233, cpsc235, encm339]),
+  member(C, [cpsc219, cpsc233, cpsc235]),
   member(P, [phil279, phil377]).
   
 prereqFor(cpsc319, [C]) :- 
@@ -154,6 +154,12 @@ prereqFor(cpsc359, [C, P]) :-
 prereqFor(cpsc411, [C]) :- 
   member(C, [cpsc319, cpsc331]).
   
+prereqFor(cpsc413, [C, C1, M, M1]) :- 
+  member(C, [cpsc313]),
+  member(C1, [cpsc331, (cpsc319; cpsc105)]),
+  member(M, [math211, math213]),
+  member(M1, [math249, math251, math265, math275, math281, amat217]).
+  
 prereqFor(cpsc418, [C, M]) :- 
   member(C, [cpsc331, (cpsc319; cpsc105)]),
   member(M, [math271, math273, pmat315]).
@@ -162,15 +168,37 @@ prereqFor(cpsc433, [C, P]) :-
   member(C, [cpsc313]),
   member(P, [phil279, phil377]).
   
-prereqFor(cpsc441, [C]) :- 
-  member(C, [cpsc319, cpsc331, (cpsc325, cpsc359, encm369)]).
+prereqFor(cpsc441, [C, C1]) :- 
+  member(C, [cpsc319, cpsc331]),
+  member(C1, [cpsc325, cpsc359, encm369]).
   
 prereqFor(cpsc449, [C, P]) :- 
   member(C, [cpsc319, cpsc331]),
   member(P, [phil279, phil377]).
   
+prereqFor(cpsc453, [C, M, M1]) :- 
+  member(C, [cpsc319, cpsc331]),
+  member(M, [math211, math213]),
+  member(M1, [math253, math267, math277, math283, amat219]).
+  
+prereqFor(cpsc457, [C, C1]) :- 
+  member(C, [cpsc319, cpsc331]),
+  member(C1, [cpsc325, cpsc359, encm369]).
+  
+prereqFor(cpsc461, [C, C1]) :- 
+  member(C, [cpsc355]),
+  member(C1, [cpsc319, cpsc331]).
+  
 prereqFor(cpsc471, [C]) :- 
   member(C, [cpsc319, cpsc331]).
+  
+prereqFor(cpsc481, [S]) :-
+  member(S, [seng300, seng301, senge480]).
+  
+prereqFor(cpsc491, [C, M, M1]) :- 
+  member(C, [cpsc319, cpsc331]),
+  member(M, [math211, math213]),
+  member(M1, [math249, math251, math265, math275, math281, amat217]).
   
 prereqFor(cpsc501, [C]) :- 
   member(C, [cpsc349, cpsc449]).
@@ -183,9 +211,25 @@ prereqFor(cpsc519, [M, C]) :-
   member(M, [math311, math313]), 
   member(C, [cpsc413]).
   
+prereqFor(cpsc521, [C, C1]) :- 
+  member(C, [cpsc313]),
+  member(C1, [cpsc349, cpsc449]).
+  
 prereqFor(cpsc525, [M, C]) :- 
   member(M, [math271, math273]), 
   member(C, [cpsc457]).
+  
+prereqFor(cpsc530, [C, M, ST]) :- 
+  member(C, [cpsc219, cpsc233, cpsc235]),
+  member(M, [math271, math273, pmat315]),
+  member(ST, [stat205, stat211, stat213, stat321, math321]).
+  
+prereqFor(cpsc531, [C, ST]) :-
+  member(C, [cpsc457]),
+  member(ST, [stat205, stat211, stat213, stat321, math321]).
+  
+prereqFor(cpsc535, [M]) :- 
+  member(M, [math311, math313, math331, math353, amat307, amat311, pmat331]).
   
 prereqFor(cpsc583, [C]) :- 
   member(C, [cpsc319, cpsc331]).
@@ -227,6 +271,8 @@ antireqs([math331, math353, math367, math377, math381, amat309]).
 /*
 ** Part 2: Insert your implementation for allPrereqFor here
 */
+
+allPrereqFor()
 
 /*
 ** Part 3: Insert your implementation for allPrereqFor_NoAnti here 
