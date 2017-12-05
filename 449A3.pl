@@ -1,3 +1,5 @@
+%['/Users/snkwo/Desktop/Prolog/449A3.pl']. to run file
+
 /*
 ** Starter code for CPSC 449 Assignment #3
 **
@@ -272,7 +274,14 @@ antireqs([math331, math353, math367, math377, math381, amat309]).
 ** Part 2: Insert your implementation for allPrereqFor here
 */
 
-allPrereqFor()
+%allPrereqFor(X,Z) :- prereqFor(X,Z).
+%allPrereqFor(X,[]) :- prereqFor(X,Y),
+%                    allPrereqFor(Y,Z).
+					
+allPrereqFor(A, C) :- (prereqFor(A, C)), sort().
+
+prereqList(direct, indirect) :- direct = [H | T], allPrereqFor(H, S), prereqList(T, Z), %do something with 'indirect'
+
 
 /*
 ** Part 3: Insert your implementation for allPrereqFor_NoAnti here 
