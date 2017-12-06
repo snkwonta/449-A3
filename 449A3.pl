@@ -273,20 +273,23 @@ antireqs([math331, math353, math367, math377, math381, amat309]).
 /*
 ** Part 2: Insert your implementation for allPrereqFor here
 */
-
-%allPrereqFor(X,Z) :- prereqFor(X,Z).
-%allPrereqFor(X,[]) :- prereqFor(X,Y),
-%                    allPrereqFor(Y,Z).
-					
-allPrereqFor(A, C) :- (prereqFor(A, C)), sort().
-
-prereqList(direct, indirect) :- direct = [H | T], allPrereqFor(H, S), prereqList(T, Z), %do something with 'indirect'
+	
+allPrereqFor(A, C) :- prereqFor(A, B), prereqList(B, F), append(B, F, D), sort(D, C). %append something with 'D' and sort something with 'C'
+%prereqList([], []).
+prereqList(Direct, Indirect) :- Direct = [H | T], allPrereqFor(H, S), prereqList(T, Z), append(S, Z, Indirect). %append something with 'indirect'
 
 
 /*
 ** Part 3: Insert your implementation for allPrereqFor_NoAnti here 
 */
 
+% call allPrereqFor_NoAnti on list from allPrereqFor
+allPrereqFor_NoAnti(A, C) :-
+prereqAntiList(Direct, Indirect) :-
+
+
 /*
 ** Part 4: Insert your implementation for neededCourses here
 */
+
+%neededCourses():-
