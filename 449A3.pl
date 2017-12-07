@@ -281,23 +281,44 @@ prereqList(Direct, Indirect) :- Direct = [H | T], allPrereqFor(H, S), prereqList
 
 /*
 ** Part 3: Insert your implementation for allPrereqFor_NoAnti here 
+
+
+antireqFor(A,B) :-
+   antireqs(X),
+   member(A,X),
+   subtract(X, [A], B).
+   
+
+/* 
+** containsAntireq(A) should be read as "List A contains two or more courses which 
+** are anti-requisites of one another".
 */
+
+
+removeAnti([H|T]) :-
+   %goes through list and checks if variables are in there, then compares them to see if they are antireqs
+   member(X, [H|T]),
+   member(Y, [H|T]),
+   X \= Y,
+   isAntireq(X,Y).
+   
+/* 
+** allPrereqFor_NoAnti(Course, PrereqList) - a rule which should be read as: 
+** "Course has the following permutations of lists of prerequisite courses,
+** of which none are anti-requisites of one another."
+*/
+
+
 
 % call allPrereqFor_NoAnti on list from allPrereqFor
 allPrereqFor_NoAnti(A, C) :- allPrereqFor(A, C), \+removeAnti(C). %since C has antirequisites
 
-
-removeAnti() :-
-%antireqs()
-%antireqs1(A, B) :- antireqs(A), 
-
-
-%prereqAntiList1([], []).
-%prereqAntiList(List1, List2) :- List1 = [H | T  ]
+%isAntireq(A,B) :-
+%antireqs(X),
+%member(A,X),
+%subtract(X,[A],B).
 
 
 /*
 ** Part 4: Insert your implementation for neededCourses here
 */
-
-%neededCourses():-
