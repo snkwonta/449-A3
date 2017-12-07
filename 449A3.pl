@@ -275,7 +275,7 @@ antireqs([math331, math353, math367, math377, math381, amat309]).
 */
 	
 allPrereqFor(A, C) :- prereqFor(A, B), prereqList(B, F), append(B, F, D), sort(D, C). %append something with 'D' and sort something with 'C'
-%prereqList([], []).
+prereqList([], []).
 prereqList(Direct, Indirect) :- Direct = [H | T], allPrereqFor(H, S), prereqList(T, Z), append(S, Z, Indirect). %append something with 'indirect'
 
 
@@ -284,8 +284,16 @@ prereqList(Direct, Indirect) :- Direct = [H | T], allPrereqFor(H, S), prereqList
 */
 
 % call allPrereqFor_NoAnti on list from allPrereqFor
-allPrereqFor_NoAnti(A, C) :-
-prereqAntiList(Direct, Indirect) :-
+allPrereqFor_NoAnti(A, C) :- allPrereqFor(A, C), \+removeAnti(C). %since C has antirequisites
+
+
+removeAnti() :-
+%antireqs()
+%antireqs1(A, B) :- antireqs(A), 
+
+
+%prereqAntiList1([], []).
+%prereqAntiList(List1, List2) :- List1 = [H | T  ]
 
 
 /*
