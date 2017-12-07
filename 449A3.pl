@@ -295,28 +295,22 @@ antireqFor(A,B) :-
 */
 
 
+checkAnti(A,B) :-
+  antireqs(X), %antireqs takes in a list
+	member(A, X), %check if either item is in the list of antireqs X
+	member(B, X),
+	A \= B. %make sure they arent equal
+
 removeAnti([H|T]) :-
    %goes through list and checks if variables are in there, then compares them to see if they are antireqs
-   member(X, [H|T]),
-   member(Y, [H|T]),
+   member(A, [H|T]),
+   member(B, [H|T]),
    X \= Y,
-   isAntireq(X,Y).
-   
-/* 
-** allPrereqFor_NoAnti(Course, PrereqList) - a rule which should be read as: 
-** "Course has the following permutations of lists of prerequisite courses,
-** of which none are anti-requisites of one another."
-*/
-
+   checkAnti(X,Y).
 
 
 % call allPrereqFor_NoAnti on list from allPrereqFor
 allPrereqFor_NoAnti(A, C) :- allPrereqFor(A, C), \+removeAnti(C). %since C has antirequisites
-
-%isAntireq(A,B) :-
-%antireqs(X),
-%member(A,X),
-%subtract(X,[A],B).
 
 
 /*
